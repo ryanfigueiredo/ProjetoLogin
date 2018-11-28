@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<h:outputStylesheet library="css" name="index.css" />
+	<!-- SCRIPTS -->
+	<script src="../resources/scripts/modal.js" type="text/javascript"></script>
+
+	<title>Login</title>
+
+</h:head>
+<h:body>
+	<p:growl id="mensagem" />
+
+	<div id="login-box">
+		<div id="login-box-interno">
+			<div class="logomarca">
+				<img src="../resources/imagens/logo_crud.jpg"></img>
+			</div>
+			<div class="campos-botoes">
+				<h:form>
+					<!-- Campo de usário -->
+					<div class="input-div" id="input-usuario">
+						<p:inputText placeholder="Usuário" maxlength="25" required="true"
+							requiredMessage="Campo usuário obrigatório"
+							value="#{autenticacaoBean.usuario.nomeUsuario}" />
+					</div>
+					<!-- Campo da senha -->
+					<div class="input-div" id="input-senha">
+						<p:password placeholder="Senha" maxlength="32" required="true"
+							requiredMessage="Campo senha obrigatório"
+							value="#{autenticacaoBean.usuario.senha}" />
+					</div>
+					<!-- Botões -->
+					<div id="botoes" class="botoes-div">
+						<div id="entrar">
+							<p:commandLink value="Entrar" styleClass="entrar"
+								actionListener="#{autenticacaoBean.autenticar}"
+								update=":mensagem" />
+						</div>
+					</div>
+				</h:form>
+			</div>
+			<div id="botoes" class="botoes-div">
+				<h:form>
+					<div id="novo">
+						Não tem uma conta?
+						<p:commandLink id="criar" value="Crie uma!" class="btn_modal"
+							actionListener="#{usuarioBean.novo}" />
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- TELA DE NOVO CADASTRO -->
+	<div id="modal" class="modal">
+		<div class="modal-box">
+			<div class="logomarca-cadastro">
+				<img src="../resources/imagens/logo_crud.jpg"></img>
+			</div>
+			<div class="modal-box-conteudo">
+				<h:form id="formCadastro">
+					<div class="input-nome-div" id="modal-nome-usuario">
+						<p:inputText value="#{usuarioBean.usuario.nome}"
+							placeholder="Nome *" maxlength="55" required="true"
+							requiredMessage="Campo nome obrigatorio" />
+					</div>
+					<div class="input-email-div" id="input-email-usuario">
+						<p:inputText value="#{usuarioBean.usuario.email}"
+							placeholder="E-mail *" maxlength="50" required="true"
+							requiredMessage="Campo e-mail obrigatório" />
+					</div>
+					<div class="input-nomeUsuario-div" id="input-nomeUsuario">
+						<p:inputText value="#{usuarioBean.usuario.nomeUsuario}"
+							placeholder="Usuário *" maxlength="25" required="true"
+							requiredMessage="Campo Usuário obrigatório" />
+					</div>
+					<div class="input-senha-div" id="input-senha-usuario">
+						<p:password value="#{usuarioBean.usuario.senhaCriptografada}"
+							placeholder="Senha *" maxlength="32" required="true"
+							requiredMessage="Campo senha obrigatório" />
+					</div>
+					<div id="botoes" class="botoes-div">
+						<div id="entrar">
+							<h:commandLink value="Salvar" styleClass="entrar"
+								action="#{usuarioBean.salvar}" />
+						</div>
+					</div>
+				</h:form>
+			</div>
+			<div class="fechar">X</div>
+		</div>
+	</div>
+</h:body>
+</html>
